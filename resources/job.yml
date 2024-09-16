@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    dynamic_pricing:
+      name: "hello_world"
+      tasks:
+        - task_key: hello_world
+          python_wheel_task:
+            package_name: dynamic_pricing
+            entry_point: dynamic_pricing
+
+          libraries:
+            - whl: ../dist/*.whl
+
+          new_cluster:
+            node_type_id: Standard_DS3_v2
+            num_workers: 1
+            spark_version: 15.3.x-cpu-ml-scala2.12

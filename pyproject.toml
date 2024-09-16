@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "dynamic-pricing"
+version = "0.1.0"
+description = "Dynamic pricing streaming deployment on databricks"
+authors = ["vtoliveiraxebia <victor.deoliveira@xebia.com>"]
+readme = "README.md"
+packages = [{include = "dynamic_pricing"}]
+
+[tool.poetry.scripts]
+dynamic_pricing = "dynamic_pricing.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.black]
+line-length = 100
+exclude = '''
+^/(
+  (
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.venv
+    | _build
+    | build
+    | dist
+    | .notebooks
+    | .nox
+      notebooks/*
+  )
+)
+'''
+
+[tool.mypy]
+exclude = ["^tasks\\.py$", "notebooks/.*"]
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+exclude = [
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".venv",
+    "_build",
+    "build",
+    "dist",
+    ".notebooks",
+    ".nox",
+    "pocs/",
+    "notebooks/"
+]
+lint.extend-select = [
+    "E501",
+    "I001",
+    "W291",
+    "W292",
+    "T100",
+    "ANN001",
+    "ANN201",
+]
+extend-exclude = ["__pycache__", ".tmp", "tests/", "*test_*", "notebooks/"]
+format.quote-style = "double"
+format.indent-style = "space"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

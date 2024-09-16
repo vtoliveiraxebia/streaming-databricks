@@ -1,0 +1,18 @@
+bundle:
+  name: python_wheel_poetry
+
+include:
+  - ./resources/job.yml
+
+workspace:
+  host: https://adb-508909986242663.3.azuredatabricks.net/
+
+artifacts:
+  default:
+    type: whl
+    build: poetry build
+
+targets:
+  dev:
+    default: true
+    mode: development
