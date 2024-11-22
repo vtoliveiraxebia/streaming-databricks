@@ -7,7 +7,11 @@ resources:
           python_wheel_task:
             package_name: dynamic_pricing
             entry_point: dynamic_pricing
-
+            parameters:
+              [
+                "--input_table", "dbfs:/databricks-datasets/airlines/part-00000",
+                "--output_table", "dbfs:/tmp/dynamic_pricing"
+              ]
           libraries:
             - whl: ../dist/*.whl
 
